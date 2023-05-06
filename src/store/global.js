@@ -17,6 +17,9 @@ const store = createStore({
       getBeers(state){
         return state.beers
       },
+      getUserLoggedIn(state){
+        return state.user.auth ? true : false
+      }
     },
     mutations: {
       SET_USER(state, user){
@@ -44,7 +47,6 @@ const store = createStore({
             router.push('/')
             return user
           })
-          .catch(error => error)
       },
       register({commit}, userDetails){
         const { email, password } = userDetails

@@ -1,6 +1,6 @@
 <template>
   <v-layout class="mainLayout">
-    <v-navigation-drawer permanent theme="dark">
+    <v-navigation-drawer permanent theme="dark" v-if="userLoggedIn">
       <h2 class="pt-2 pb-2">Beer Meets Food</h2>
 
       <v-divider></v-divider>
@@ -59,12 +59,7 @@ export default {
       }
     };
 
-    const search = ref('');
-
-    const searchQuery = computed({
-      get: () => store.state.searchQuery,
-      set: (value) => store.commit('SET_SEARCH_QUERY', value),
-    });
+    const userLoggedIn = computed(() => store.getters.getUserLoggedIn);
 
     const beers = computed(() =>
       store.getters.getBeers.map((beer) => beer.name)
@@ -74,7 +69,7 @@ export default {
       store.dispatch('fetchUser');
     });
 
-    return { store, logout, searchQuery, beers, search };
+    return { store, logout, beers, userLoggedIn };
   },
 };
 </script>

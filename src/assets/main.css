@@ -1,4 +1,3 @@
-@import './base.css';
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Braah+One&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
 @import url('https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css');
@@ -58,42 +57,3 @@ h5 {
   font-size: 1rem;
 }
 
-/*
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-
-@layer base {
-  h1,h2,h3,h4{
-    @apply  font-bold uppercase tracking-widest;
-  }
-
-
-
-  p{
-    font-weight: 200;
-    font-size: 12px;
-  }
-
-  small{
-    font-size: 10px;
-  }
-
-  .boxShadow{
-    box-shadow: inset 0px 0px 22px 30px #000;
-
-  }
-
-  input,
-  select {
-    color: #000;
-    outline: none;
-  }
-
-  @media (hover: hover) {
-    a:hover {
-      background-color: hsla(0, 0%, 48%, 0.2);
-    }
-  }
-} */

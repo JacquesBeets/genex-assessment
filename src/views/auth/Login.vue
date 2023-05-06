@@ -10,8 +10,8 @@
         elevation="5"
       >
         <v-container>
-          <h5 class="mb-5">LOGIN</h5>
           <v-form @submit.prevent="login">
+            <h5 class="mb-5">LOGIN</h5>
             <v-text-field
               v-model="loginForm.email"
               label="Email"
