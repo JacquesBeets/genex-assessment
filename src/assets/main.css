@@ -1,27 +1,64 @@
 @import './base.css';
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  font-weight: normal;
-}
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-}
+@layer base {
+  h1,h2,h3,h4{
+    @apply  font-bold uppercase tracking-widest;
+  }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+  h1{
+    @apply text-2xl;
+  }
+  
+  h2 {
+    @apply text-xl;
+  }
+
+  h3{
+    @apply text-lg;
+  }
+
+  h4{
+    @apply text-base;
+  }
+
+  p{
+    font-weight: 200;
+    font-size: 12px;
+  }
+
+  small{
+    font-size: 10px;
+  }
+
+  #app {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-weight: normal;
+  }
+
+  .boxShadow{
+    box-shadow: inset 0px 0px 22px 30px #000;
+    /* box-shadow: inset -6px -3px 22px 30px #000000; */
+
+  }
+
+  @media (hover: hover) {
+    a:hover {
+      background-color: hsla(41, 80%, 32%, 0.2);
+    }
   }
 }
 
-@media (min-width: 1024px) {
+
+
+
+/* @media (min-width: 1024px) {
   body {
     display: flex;
     place-items: center;
@@ -32,4 +69,4 @@ a,
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
   }
-}
+} */
