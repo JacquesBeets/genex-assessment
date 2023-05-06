@@ -1,5 +1,64 @@
 @import './base.css';
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Braah+One&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
+@import url('https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css');
+@import url('https://fonts.googleapis.com/css?family=Material+Icons');
 
+h1,
+h2,
+h3,
+h4,
+a {
+  font-family: 'Bebas Neue', cursive;
+  color: #ff7043;
+  text-align: center;
+  line-height: 100%;
+}
+
+h5 {
+  font-family: 'Bebas Neue', cursive;
+  text-align: center;
+  line-height: 100%;
+}
+
+
+.text-h5{
+  font-family: 'Bebas Neue', cursive !important;
+  line-height: 100% !important;
+  color: #ff7043;
+}
+
+.v-btn__content{
+  font-family: 'Bebas Neue', cursive !important;
+  line-height: 100% !important;
+
+}
+
+.text-h5{
+  /* color: #ff7043 !important; */
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+/*
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,21 +69,7 @@
     @apply  font-bold uppercase tracking-widest;
   }
 
-  h1{
-    @apply text-2xl;
-  }
-  
-  h2 {
-    @apply text-xl;
-  }
 
-  h3{
-    @apply text-lg;
-  }
-
-  h4{
-    @apply text-base;
-  }
 
   p{
     font-weight: 200;
@@ -37,8 +82,13 @@
 
   .boxShadow{
     box-shadow: inset 0px 0px 22px 30px #000;
-    /* box-shadow: inset -6px -3px 22px 30px #000000; */
 
+  }
+
+  input,
+  select {
+    color: #000;
+    outline: none;
   }
 
   @media (hover: hover) {
@@ -46,4 +96,4 @@
       background-color: hsla(0, 0%, 48%, 0.2);
     }
   }
-}
+} */

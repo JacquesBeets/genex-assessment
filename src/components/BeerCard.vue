@@ -1,22 +1,72 @@
 <template>
-    <RouterLink :to="`/beer/${beer.id}`" class="card mb-5 h-32 flex shadow-lg bg-black  overflow-hidden cursor-pointer rounded-md" >
-        <div class="h-full  p-2 w-1/4  flex justify-center items-center bg-white boxShadow">
-            <img :src="beer.image_url" :alt="beer.name" class="h-full"/>
+  <v-col cols="12" xs="12" sm="6" md="4" lg="4">
+    <v-card class="card">
+      <div class="d-flex flex-no-wrap justify-space-between">
+        <div class="titleContainer">
+          <v-card-title class="text-h5 pb-0">
+            {{ beer.name }}
+          </v-card-title>
+
+          <v-card-subtitle>{{ beer.tagline }}</v-card-subtitle>
+
+          <v-card-actions>
+            <v-btn variant="text" @click="routeToBeer(beer.id)">VIEW</v-btn>
+          </v-card-actions>
         </div>
 
-        <div class="text-white p-3 w-3/4 self-end  pointer-events-none">
-            <h4 class="leading-3">{{ beer.name }}</h4>
-            <small class="opacity-70 italic">{{ beer.tagline }}</small>
-        </div>
-    </RouterLink>
+        <v-avatar class="avatar ma-3" size="125">
+          <div class="circle">&nbsp;</div>
+          <v-img :src="beer.image_url" :alt="beer.name"></v-img>
+        </v-avatar>
+      </div>
+    </v-card>
+  </v-col>
 </template>
 
 <script setup>
-    import { RouterLink, RouterView } from 'vue-router'
-    defineProps({
-        beer: {
-            type: Object,
-            required: true
-        }
-    })
+import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
+
+defineProps({
+  beer: {
+    type: Object,
+    required: true,
+  },
+});
+
+const route = useRouter();
+const store = useStore();
+
+// route to beer details page
+const routeToBeer = (beerID) => {
+  route.push(`/beer/${beerID}`);
+  store.commit('SET_BEERS', []);
+};
 </script>
+
+<style scoped>
+.card {
+  background: rgb(4, 20, 20);
+  background: linear-gradient(
+    52deg,
+    rgba(4, 20, 20, 0.5746673669467788) 57%,
+    rgba(255, 112, 67, 1) 100%
+  );
+}
+.titleContainer {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 80%;
+}
+.avatar {
+  position: relative;
+}
+.circle {
+  clip-path: circle(50% at 50% 50%);
+  background-color: white;
+  position: absolute;
+  width: 75%;
+  height: 75%;
+}
+</style>

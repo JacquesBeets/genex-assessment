@@ -9,8 +9,8 @@
   font-weight: normal;
 }
 
-html{
-  background: #1b1b1b;
+/* html{
+  background: #070707;
 }
 
 body {
@@ -22,5 +22,14 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: scroll;
+  overflow: hidden;
 }
+
+
+
+
+p{
+  font-weight: 200;
+  font-size: 12px;
+}
+ */

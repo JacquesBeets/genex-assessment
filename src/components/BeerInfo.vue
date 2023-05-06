@@ -12,7 +12,6 @@
 </template>
 
 <script setup>
-    import { RouterLink, RouterView } from 'vue-router'
     defineProps({
         beerInfo: {
             type: Object
