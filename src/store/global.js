@@ -14,10 +14,26 @@ const store = createStore({
     },
     getters: {
       getBeers(state){
+        // filtering out beers with crappy images
         return state.beers.filter(beer => 
           beer.image_url !== null &&
           beer.id !== 1 &&
-          beer.id !== 3
+          beer.id !== 3 &&
+          beer.id !== 53 &&
+          beer.id !== 26 &&
+          beer.id !== 74 &&
+          beer.id !== 21 &&
+          beer.id !== 22 &&
+          beer.id !== 72 &&
+          beer.id !== 35 &&
+          beer.id !== 11 &&
+          beer.id !== 65 &&
+          beer.id !== 43 &&
+          beer.id !== 70 &&
+          beer.id !== 20 &&
+          beer.id !== 68 &&
+          beer.id !== 73 &&
+          beer.id !== 54
         )
       },
     },

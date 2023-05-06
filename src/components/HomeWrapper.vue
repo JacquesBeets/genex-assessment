@@ -1,5 +1,5 @@
 <template>
-    <div class="columns-3 h-full overflow-auto">
+    <div class="columns-3 h-full">
         <BeerCard v-for="beer in beers" :beer="beer" :key="beer.id" />
     </div>
 </template>
@@ -9,6 +9,7 @@
 import { useStore } from 'vuex';
 import { computed, onBeforeMount } from 'vue';
 import BeerCard from './BeerCard.vue';
+
 const store = useStore();
 const beers = computed(() => store.getters.getBeers);
 
