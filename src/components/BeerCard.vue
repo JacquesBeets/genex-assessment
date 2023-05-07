@@ -3,12 +3,12 @@
     <v-card class="card">
       <div class="d-flex flex-no-wrap justify-space-between">
         <div class="titleContainer">
-          <v-card-title class="text-h5 pb-0">
+          <v-card-title class="text-h5 pb-0 title">
             {{ beer.name }}
           </v-card-title>
 
           <v-card-subtitle>{{ beer.tagline }}</v-card-subtitle>
-
+          <Rating :beer="beer" :readOnly="true" />
           <v-card-actions>
             <v-btn variant="text" @click="routeToBeer(beer.id)">VIEW</v-btn>
           </v-card-actions>
@@ -26,6 +26,7 @@
 <script setup>
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
+import Rating from './Rating.vue';
 
 defineProps({
   beer: {
@@ -53,15 +54,18 @@ const routeToBeer = (beerID) => {
     rgba(255, 112, 67, 1) 100%
   );
 }
+
 .titleContainer {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 80%;
 }
+
 .avatar {
   position: relative;
 }
+
 .circle {
   clip-path: circle(50% at 50% 50%);
   background-color: white;

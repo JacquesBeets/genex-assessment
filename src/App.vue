@@ -1,37 +1,9 @@
 <template>
   <v-layout class="mainLayout">
-    <v-navigation-drawer permanent theme="dark" v-if="userLoggedIn">
-      <h2 class="pt-2 pb-2">Beer Meets Food</h2>
-
-      <v-divider></v-divider>
-
-      <v-list density="compact" nav>
-        <v-list-item
-          prepend-icon="mdi-home-city"
-          size="x-small"
-          title="Home"
-          value="home"
-        ></v-list-item>
-        <v-list-item
-          prepend-icon="mdi-account"
-          size="x-small"
-          title="My Account"
-          value="account"
-        ></v-list-item>
-        <v-list-item
-          prepend-icon="mdi-account-group-outline"
-          title="Users"
-          value="users"
-        ></v-list-item>
-      </v-list>
-
-      <template v-slot:append>
-        <div class="pa-2">
-          <v-btn block @click="logout"> Logout </v-btn>
-        </div>
-      </template>
-    </v-navigation-drawer>
     <v-main theme="dark" class="mainLayoutRight">
+      <div class="px-5 py-5 searchBar" v-if="userLoggedIn">
+        <SearchBar class="" />
+      </div>
       <RouterView />
     </v-main>
   </v-layout>
@@ -39,25 +11,22 @@
 
 <script>
 import { RouterLink, RouterView } from 'vue-router';
+import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import { onBeforeMount, computed, ref } from 'vue';
+import SearchBar from './components/SearchBar.vue';
 
 export default {
   name: 'app',
   components: {
     RouterLink,
     RouterView,
+    SearchBar
   },
   setup() {
     const store = useStore();
+    const router = useRouter();
 
-    const logout = async () => {
-      try {
-        await store.dispatch('logout');
-      } catch (e) {
-        console.log(e);
-      }
-    };
 
     const userLoggedIn = computed(() => store.getters.getUserLoggedIn);
 
@@ -67,19 +36,24 @@ export default {
 
     onBeforeMount(() => {
       store.dispatch('fetchUser');
+      store.dispatch('fetchRatings');
     });
 
-    return { store, logout, beers, userLoggedIn };
+    return { store, beers, userLoggedIn, router };
   },
 };
 </script>
 
 <style scoped>
-.mainLayoutRight {
+.mainLayout {
+  background-color: rgb(197, 162, 119);
+  height: 100%;
   position: relative;
 }
 
-.mainLayout {
-  background-color: rgb(197, 162, 119);
+.searchBar {
+  position: sticky;
+  top: 1%;
+  z-index: 100;
 }
 </style>

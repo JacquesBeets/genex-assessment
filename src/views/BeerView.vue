@@ -1,5 +1,5 @@
 <template>
-  <BeerInfo :beerInfo="beer"/>
+  <BeerInfo :beerInfo="beer" />
 </template>
 
 <script setup>

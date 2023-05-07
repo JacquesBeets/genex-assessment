@@ -18,18 +18,6 @@ import './assets/main.css'
 const vuetify = createVuetify({
     theme: {
         defaultTheme: 'dark',
-        colors: {
-            // background: "#272727",
-            // surface: "#000000",
-            // primary: "#000000",
-            // "primary-darken-1": "#000000",
-            // secondary: "#000000",
-            // "secondary-darken-1": "#000000",
-            // error: "#000000",
-            // info: "#000000",
-            // success: "#000000",
-            // warning: "#000000",
-          },
     },
     components,
     directives,

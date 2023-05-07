@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { auth } from '../firebase'
-// import HomeView from '../views/HomeView.vue'
 
 import HomeWrapper from '../components/HomeWrapper.vue'
 

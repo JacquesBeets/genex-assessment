@@ -1,16 +1,19 @@
 import { createStore } from 'vuex'
 import router from '../router'
-import { auth } from '../firebase'
+import { auth, db } from '../firebase'
+import { collection, addDoc, setDoc, doc, getDocs, query, where, onSnapshot } from 'firebase/firestore'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 
 const store = createStore({
     state () {
       return {
         searchQuery: '',
+        selectedSearchQuery: '',
         user: {},
         apiBase: "https://api.punkapi.com/v2",
         beers: [],
-        beerInfo:{}
+        beerInfo:{},
+        ratings: []
       }
     },
     getters: {
@@ -19,6 +22,25 @@ const store = createStore({
       },
       getUserLoggedIn(state){
         return state.user.auth ? true : false
+      },
+      getRatings(state){
+        
+        const ratings = {}
+        state.ratings.forEach(rating => {
+          if(ratings[rating.beer]){
+            ratings[rating.beer].push(rating)
+          }else{
+            ratings[rating.beer] = [rating]
+          }
+        })
+
+        // loop over reatings object and calculate average rating of each beer out of 5
+        for(let beer in ratings){
+          let total = 0
+          ratings[beer].forEach(rating => total += rating.rating)
+          ratings[beer] = total / ratings[beer].length
+        }
+        return ratings
       }
     },
     mutations: {
@@ -36,6 +58,12 @@ const store = createStore({
       },
       SET_SEARCH_QUERY(state, query){
         state.searchQuery = query
+      },
+      SET_SELECTED_SEARCH_QUERY(state, query){
+        state.selectedSearchQuery = query
+      },
+      SET_RATINGS(state, ratings){
+        state.ratings = ratings
       }
     },
     actions:{
@@ -64,8 +92,44 @@ const store = createStore({
           commit('CLEAR_USER')
           router.push('/login')
         } catch (error) {
-          console.log(error)
+          console.error(error)
         }
+      },
+      async sendMessage({state}, message){
+        const collectionRef = collection(db, 'messages')
+
+        const messageObj = {  
+          message,
+          user: state.user.uid,
+          username: state.user.email.split('@')[0],
+          createdAt: new Date()
+        }
+
+        const messageRef = await addDoc(collectionRef, messageObj)
+        return messageRef
+      },
+      async createRating({state}, payload){
+        const collectionRef = collection(db, 'ratings')
+
+        const ratingObj = {  
+          rating: payload.rating,
+          beer: payload.id,
+          user: state.user.uid,
+          username: state.user.email.split('@')[0],
+          createdAt: new Date()
+        }
+        const ratingRef = await addDoc(collectionRef, ratingObj)
+        return ratingRef
+      },
+      fetchRatings({state, commit}){
+        const q = query(collection(db, 'ratings'))
+        onSnapshot(q, (querySnapshot) => {
+          const ratings = []
+          querySnapshot.forEach((doc) => {
+            ratings.push(doc.data())
+          })
+          commit('SET_RATINGS', ratings)
+        })
       },
       fetchUser({commit}){  
         auth.onAuthStateChanged(async user => { 

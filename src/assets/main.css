@@ -3,6 +3,10 @@
 @import url('https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css');
 @import url('https://fonts.googleapis.com/css?family=Material+Icons');
 
+body{
+  background-color: rgb(197, 162, 119);
+}
+
 h1,
 h2,
 h3,
@@ -33,9 +37,10 @@ h5 {
 
 }
 
-.text-h5{
-  /* color: #ff7043 !important; */
+#app{
+  height: 100vh;
 }
+
 
 h1 {
   font-size: 3rem;

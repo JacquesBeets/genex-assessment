@@ -1,6 +1,5 @@
 <template>
   <v-row class="px-5 py-5">
-    <Toolbar class="toolbar" />
     <BeerCard v-for="beer in beers" :beer="beer" />
   </v-row>
 </template>
@@ -9,7 +8,6 @@
 import { useStore } from 'vuex';
 import { computed, onBeforeMount, ref } from 'vue';
 import BeerCard from './BeerCard.vue';
-import Toolbar from './Toolbar.vue';
 
 const store = useStore();
 const beers = computed(() => store.getters.getBeers);
@@ -33,7 +31,7 @@ onBeforeMount(() => {
 .mainLayoutRight {
   position: relative;
 }
-.toolbar {
+.searchBar {
   position: sticky;
   top: 1%;
   z-index: 100;
