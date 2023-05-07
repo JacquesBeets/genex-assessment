@@ -1,0 +1,52 @@
+import App from "../../App.vue";
+import { mount } from "@vue/test-utils";
+import { createStore } from "vuex";
+
+
+describe("App.vue", () => {
+    let store
+    let mockFunction = jest.fn();
+    let mockRouter = {  
+        push: jest.fn(),
+    };
+
+
+    beforeEach(() => {  
+        store = createStore({
+            state() {
+                return {
+                    user: {
+                        name: "Test User",
+                        email: "test@test.com",
+                        password: "test1234",
+                    },
+                    token: "testtoken"
+                };
+            },
+            mutations: {
+                setUser(state, payload) { 
+                    state.user = payload;
+                },
+            },
+            actions: {
+                fetchUser: mockFunction,
+                fetchRatings: mockFunction,
+            },
+            getters: {
+                getUserLoggedIn: mockFunction,
+                getBeers: mockFunction,
+            },
+        });
+    });
+
+
+    test("Check that layout exists.", () => {
+        // Arrange
+        const wrapper = mount(App, {
+            global: { plugins: [store] },
+        });
+        // Act
+        // Assert
+        expect(wrapper.findComponent({name: "RouterView"}).exists()).toBe(true);
+    });
+});
