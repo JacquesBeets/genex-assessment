@@ -26,7 +26,7 @@ const store = createStore({
       getRatings(state){
         
         const ratings = {}
-        
+
         state.ratings.forEach(rating => {
           if(ratings[rating.beer]){
             ratings[rating.beer].push(rating)
@@ -85,7 +85,6 @@ const store = createStore({
             router.push('/')
             return user
           })
-          .catch(error => error)
       },
       async logout({commit}){
         try {

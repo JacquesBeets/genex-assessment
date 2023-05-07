@@ -18,10 +18,10 @@ const fetchBeerById = () => {
   store.dispatch("fetchBeerById", beerId.value);
 }
 
-store.commit("SET_BEER_INFO", {})
 
 onBeforeMount(()=>{
-    fetchBeerById();
+  fetchBeerById();
+  store.commit("SET_BEER_INFO", {})
 })
 
 </script>
