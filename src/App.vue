@@ -13,7 +13,7 @@
 import { RouterLink, RouterView } from 'vue-router';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
-import { onBeforeMount, computed, ref } from 'vue';
+import { onBeforeMount, computed} from 'vue';
 import SearchBar from './components/SearchBar.vue';
 
 export default {

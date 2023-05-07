@@ -38,7 +38,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue';
+import { ref, computed } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 
@@ -114,11 +114,6 @@ const logout = async () => {
   }
 };
 
-// watch(search, (value) => {
-//   if (value !== '') {
-//     searchForBeers(value);
-//   }
-// });
 </script>
 
 <style scoped>

@@ -1,7 +1,7 @@
 import { createStore } from 'vuex'
 import router from '../router'
 import { auth, db } from '../firebase'
-import { collection, addDoc, setDoc, doc, getDocs, query, where, onSnapshot } from 'firebase/firestore'
+import { collection, addDoc, query, onSnapshot } from 'firebase/firestore'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 
 const store = createStore({
@@ -26,6 +26,7 @@ const store = createStore({
       getRatings(state){
         
         const ratings = {}
+        
         state.ratings.forEach(rating => {
           if(ratings[rating.beer]){
             ratings[rating.beer].push(rating)
@@ -34,7 +35,7 @@ const store = createStore({
           }
         })
 
-        // loop over reatings object and calculate average rating of each beer out of 5
+        // return an average rating of each beer out of 5
         for(let beer in ratings){
           let total = 0
           ratings[beer].forEach(rating => total += rating.rating)

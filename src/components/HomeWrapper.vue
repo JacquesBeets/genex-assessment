@@ -6,7 +6,7 @@
 
 <script setup>
 import { useStore } from 'vuex';
-import { computed, onBeforeMount, ref } from 'vue';
+import { computed, onBeforeMount} from 'vue';
 import BeerCard from './BeerCard.vue';
 
 const store = useStore();
